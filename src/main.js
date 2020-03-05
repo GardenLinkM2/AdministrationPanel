@@ -30,6 +30,7 @@ new Vue({
                     obj.avatar = response.data.avatar.length === 0 ? "/images/avatar.png" : response.data.avatar;
                     obj.admin = response.data.admin;
                     obj.token = localStorage.token;
+                    obj.env = localStorage.env;
 
                     if (obj.admin === false) {
                         this.$store.commit("logout");

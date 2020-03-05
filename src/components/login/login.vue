@@ -56,6 +56,7 @@
                                 let obj = res.data;
                                 obj.token = response.data.access_token;
                                 obj.fullName = obj.firstName + " " + obj.lastName;
+                                obj.env = this.form.env;
 
                                 if (obj.admin) {
                                     this.$awn.success("Bienvenue, " + obj.fullName);

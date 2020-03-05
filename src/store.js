@@ -10,7 +10,8 @@ const store = new Vuex.Store({
       fullName: null,
       avatar: null,
       admin: null,
-      token: null
+      token: null,
+      env: null
     }
   },
   mutations: {
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
       state.user.avatar = user.avatar;
       state.user.admin = user.admin;
       state.user.token = user.token;
+      state.user.env = user.env;
 
       //Enregistrement localStorage
       localStorage.id = state.user.id;
@@ -28,6 +30,7 @@ const store = new Vuex.Store({
       localStorage.avatar = state.user.avatar;
       localStorage.admin = state.user.admin;
       localStorage.token = state.user.token;
+      localStorage.env = state.user.env;
     },
 
     logout(state) {

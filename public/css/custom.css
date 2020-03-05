@@ -379,7 +379,7 @@
 .form-control, .custom-select {
     color: #f7f7f7;
 
-    background: #222;
+    background: #444;
 }
 
 input {
@@ -415,4 +415,8 @@ button {
 
 .nav-link  em {
     color: #f7f7f7;
+}
+
+.modal-header .close {
+    width: 50px;
 }
