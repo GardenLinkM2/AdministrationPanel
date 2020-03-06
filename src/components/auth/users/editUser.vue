@@ -13,7 +13,7 @@
                     admin: null
                 },
                 users: null,
-                loading: true,
+                loading: false,
                 awaiting_answer : false
             }
         },
