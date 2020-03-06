@@ -5,7 +5,7 @@
     - name: Copy artifact
       copy:
         src: /root/app.tar
-        dest: web/app.tar
+        dest: admin/app.tar
         mode: 0600
   no_log: false
 - name: Stop and remove old docker container
