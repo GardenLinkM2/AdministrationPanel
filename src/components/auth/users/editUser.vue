@@ -48,7 +48,7 @@
             checkUserEmail() {
                 var ok = (this.form.email !== "");
                 this.users.forEach(e => {
-                    if (e.email === this.form.email) {
+                    if (e.email === this.form.email && e.id !== this.$route.params.id) {
                         ok = false;
                     }
                 });

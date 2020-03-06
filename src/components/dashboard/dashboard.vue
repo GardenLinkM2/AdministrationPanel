@@ -59,7 +59,7 @@
             <b-card-text class="text-left">
                 Copyright (c) 2020 - GardenLink. Tout droits réservés. <br/><br/>
                 Fiérement développé par Alexis, Eric, Johann, Jean, Florian, Hakan, Nicolas & Nicolas, Vincent, Benoit, Axel et Nasser.<br /><br />
-                <b-link href="https://git.archal.fr/gardenlink/" target="_blank">Accès aux sources</b-link><br />
+                <b-link href="https://git.archal.fr/projetm2/" target="_blank">Accès aux sources</b-link><br />
                 <b-link href="https://binaries.artheriom.fr/" target="_blank">Accès Artifactory</b-link><br />
                 <b-link href="https://quality.artheriom.fr/" target="_blank">Accès Sonarqube</b-link>
 
