@@ -20,13 +20,13 @@
 - name: Build new Docker Image
   hosts: builder
   tasks:
-    - command: sudo docker build -t="web" ./web
+    - command: sudo docker build -t="admin" ./admin
 - name: Run Docker Image
   hosts: builder
   vars_files:
     - "{{inventory_dir}}/vars.yml"
   tasks:
-    - command: sudo docker run -d --name="{{docker_name}}" --network interne --ip {{docker_ip}} web:latest
+    - command: sudo docker run -d --name="{{docker_name}}" --network interne --ip {{docker_ip}} admin:latest
 - name: remove files
   hosts: builder
   tasks:
