@@ -1,0 +1,33 @@
+image: local_vue
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  only:
+    - tag
+  script:
+    - echo n | npm install --silent
+    - sonar-scanner
+    - npm run build
+    - cd dist
+    - tar cvf archive.tar ./
+    - curl $CURL_PARAMS "$BINARIES/prd/admin-$CI_COMMIT_TAG.tar"
+
+code_insight:
+  stage: build
+  script:
+    - sonar-scanner
+
+deploy:
+  image: local_ansible
+  stage: deploy
+  when: manual
+  only:
+    - tag
+  script:
+    - python3 /root/getPackage.py -r "generic-local/admin/prd" -o /root/app.tar
+    - ansible-playbook -i deploy/inventories/prd -u administrateur deploy/playbook.yml
+

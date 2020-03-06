@@ -8,6 +8,8 @@ import clientList from "./components/auth/clients/clientList";
 import emptyLayout from "./components/emptyLayout"
 import createClient from "./components/auth/clients/createClient";
 import userList from "./components/auth/users/userList";
+import createUser from "./components/auth/users/createUser";
+import editUser from "./components/auth/users/editUser";
 
 const router = new Router({
     mode: 'history',
@@ -57,6 +59,14 @@ const router = new Router({
                         {
                             path: '',
                             component: userList
+                        },
+                        {
+                            path: 'create',
+                            component: createUser
+                        },
+                        {
+                            path: 'edit/:id',
+                            component: editUser
                         }
                     ]
                 }

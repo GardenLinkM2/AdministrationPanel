@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       avatar: null,
       admin: null,
       token: null,
+      tokenBack: null,
       env: null
     }
   },
@@ -23,8 +24,10 @@ const store = new Vuex.Store({
       state.user.admin = user.admin;
       state.user.token = user.token;
       state.user.env = user.env;
+      state.user.tokenBack = user.tokenBack;
 
       //Enregistrement localStorage
+      localStorage.tokenBack = state.user.tokenBack;
       localStorage.id = state.user.id;
       localStorage.fullName = state.user.fullName;
       localStorage.avatar = state.user.avatar;
@@ -39,7 +42,8 @@ const store = new Vuex.Store({
         fullName: null,
         avatar: null,
         admin: null,
-        token: null
+        token: null,
+        tokenBack: null,
       };
 
       //Nettoyage

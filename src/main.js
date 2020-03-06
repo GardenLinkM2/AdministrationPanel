@@ -31,6 +31,7 @@ new Vue({
                     obj.admin = response.data.admin;
                     obj.token = localStorage.token;
                     obj.env = localStorage.env;
+                    obj.tokenBack = localStorage.tokenBack;
 
                     if (obj.admin === false) {
                         this.$store.commit("logout");

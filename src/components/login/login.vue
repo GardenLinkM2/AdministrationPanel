@@ -4,7 +4,7 @@
         data() {
             return {
                 form: {
-                    clientId: "account",
+                    clientId: "gardenlink",
                     env: "prd"
                 },
                 sending: false
@@ -51,26 +51,35 @@
 
                 this.axios.post(localStorage.authUrl + "auth/token", this.form)
                     .then(response => {
-                        this.axios.get(localStorage.authUrl + "users/me", {headers: {"Authorization": response.data.access_token}})
+                        this.axios.get(localStorage.authUrl + "users/me", {headers: {"Authorization": response.data.user_token}})
                             .then(res => {
-                                let obj = res.data;
-                                obj.token = response.data.access_token;
-                                obj.fullName = obj.firstName + " " + obj.lastName;
-                                obj.env = this.form.env;
 
-                                if (obj.admin) {
-                                    this.$awn.success("Bienvenue, " + obj.fullName);
-                                    this.$store.commit("login", obj);
-                                } else {
-                                    this.$awn.alert("Vous n'êtes pas administrateur. Annulation de la connexion.");
-                                }
+                                this.axios.post(localStorage.backUrl+"syn", {token: response.data.access_token})
+                                .then(res2 => {
+                                    let obj = res.data;
+                                    obj.token = response.data.user_token;
+                                    obj.tokenBack = res2.data.token;
+                                    obj.fullName = obj.firstName + " " + obj.lastName;
+                                    obj.env = this.form.env;
+
+                                    if (obj.admin) {
+                                        this.$awn.success("Bienvenue, " + obj.fullName);
+                                        this.$store.commit("login", obj);
+                                    } else {
+                                        this.$awn.alert("Vous n'êtes pas administrateur. Annulation de la connexion.");
+                                    }
+                                })
+                                .catch(() => {
+                                    this.$awn.alert("Erreur lors de la synchronisation au backend !")
+                                })
+
                             })
                             .catch(() => {
-                                this.$awn.alert("Erreur lors de la connexion.");
+                                this.$awn.alert("Erreur lors de la récupération de vos informations.");
                             })
                     })
                     .catch(() => {
-                        this.$awn.alert("Erreur lors de la connexion.");
+                        this.$awn.alert("Erreur lors de la demande de token.");
                     })
                     .finally(() => {
                         this.sending = false;
