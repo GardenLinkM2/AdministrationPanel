@@ -38,7 +38,7 @@
                         <b-dropdown-item><router-link to="/api/users">Utilisateurs (TODO)</router-link></b-dropdown-item>
                         <b-dropdown-item><router-link to="/api/gardens">Jardins (TODO)</router-link></b-dropdown-item>
                     </b-nav-item-dropdown>
-                    <b-nav-item><router-link to="/newsletter" >Newsletter (TODO)</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/newsletter" >Envoyer une newsletter</router-link></b-nav-item>
                 </b-navbar-nav>
 
 

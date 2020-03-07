@@ -10,6 +10,7 @@ import createClient from "./components/auth/clients/createClient";
 import userList from "./components/auth/users/userList";
 import createUser from "./components/auth/users/createUser";
 import editUser from "./components/auth/users/editUser";
+import newsletter from "./components/auth/newsletter/newsletter";
 
 const router = new Router({
     mode: 'history',
@@ -69,9 +70,19 @@ const router = new Router({
                             component: editUser
                         }
                     ]
-                }
+                },
             ]
         },
+        {
+            path: '/newsletter',
+            component: fullLayout,
+            children: [
+                {
+                    path: '',
+                    component: newsletter
+                }
+            ]
+        }
 
 
     ]

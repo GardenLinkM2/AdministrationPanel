@@ -420,3 +420,19 @@ button {
 .modal-header .close {
     width: 50px;
 }
+
+.menubar button {
+    width: 40px;
+    height: 40px;
+    display: inline;
+    background: rgb(52, 152, 219);
+    border: 1px solid rgb(30, 130, 190);
+    color: #f7f7f7;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.ProseMirror {
+    border: 1px solid rgb(30, 130, 190);
+    padding: 10px;
+}
