@@ -1,15 +1,18 @@
 <script>
 
     import deleteModal from "./deleteModal";
+    import updateWallet from "./updateWallet";
 
     export default {
         components: {
-            deleteModal
+            deleteModal,
+            updateWallet
         },
 
         data() {
             return {
                 items: {},
+                itemsBack: [],
                 loading: true
             }
         },
@@ -21,6 +24,15 @@
                         this.items = response.data.content;
                         this.loading=false;
                     })
+            },
+
+            getUsersFromBackend() {
+                this.axios.get(localStorage.backUrl + "api/Users", {headers: {"Authorization": localStorage.tokenBack}})
+                .then(response => {
+                    response.data.data.forEach(e => {
+                        this.itemsBack.push(e.id);
+                    });
+                })
             },
 
             sendNewPassword(obj) {
@@ -38,6 +50,7 @@
 
         mounted() {
             this.getUsers();
+            this.getUsersFromBackend();
         }
     }
 </script>
@@ -52,9 +65,10 @@
                     <th scope="col">Nom complet</th>
                     <th scope="col">Adresse mail</th>
                     <th scope="col">Téléphone</th>
-                    <th scope="col">Newsletter</th>
-                    <th scope="col">Administrateur</th>
-                    <th scope="col">Options</th>
+                    <th scope="col">NS.</th>
+                    <th scope="col">Admin.</th>
+                    <th scope="col">AuthAdmin</th>
+                    <th scope="col">BackAdmin</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,11 +82,27 @@
                     <td v-else>Non</td>
                     <td>
                         <span v-if="obj.email!=='administrator@localhost.com'">
-                            <router-link :to="'/auth/users/edit/'+obj.id"><span class="fas fa-user-edit" style="margin-right:20px;" v-b-tooltip.hover title="Editer l'utilisateur"/></router-link>
+                            <router-link :to="'/users/edit/'+obj.id"><span class="fas fa-user-edit" style="margin-right:20px;" v-b-tooltip.hover title="Editer l'utilisateur"/></router-link>
                             <b-link class="fas fa-envelope-open-text" style="margin-right:20px;" v-b-tooltip.hover title="Envoyer un nouveau mot de passe" v-on:click="sendNewPassword(obj)"/>
                             <b-link class="fas fa-trash" v-b-tooltip.hover v-on:click="$refs.dm.display(obj)" title="Supprimer l'utilisateur"/>
                         </span>
-                        <span v-else><i>Indisponible.</i></span>
+                        <span v-else v-b-tooltip.hover title="Impossible de modifier un administrateur"><i>Indisponible.</i></span>
+                    </td>
+                    <td>
+                        <span v-if="itemsBack.includes(obj.id)">
+                            <router-link :to="'/users/comments/'+obj.id">
+                                <span class="fas fa-comments" style="margin-right:20px;" v-b-tooltip.hover title="Afficher/Editer les commentaires et notes données à l'utilisateur"/>
+                            </router-link>
+                            <b-link class="fas fa-wallet" style="margin-right:20px;" v-b-tooltip.hover title="Voir/Editer le wallet de l'utilisateur" v-on:click="$refs.uw.display(obj)"/>
+                            <router-link :to="'/users/contracts/'+obj.id">
+                                <span class="fas fa-file-contract" style="margin-right:20px;" v-b-tooltip.hover title="Voir les contrats en cours pour l'utilisateur"/>
+                            </router-link>
+                            <router-link :to="'/users/payments/'+obj.id">
+                                <span class="fas fa-receipt" style="margin-right:20px;" v-b-tooltip.hover title="Afficher les paiments de l'utilisateur"/>
+                            </router-link>
+                        </span>
+                        <span v-else v-b-tooltip.hover title="L'utilisateur ne s'est jamais connecté sur le backend. Impossible de modifier son profil."><i>Indisponible.</i></span>
+
                     </td>
                 </tr>
             </tbody>
@@ -82,10 +112,10 @@
             <br/>
             Chargement en cours...
         </div>
-        <router-link to="/auth/users/create"><b-button variant="success" style="margin-top: 25px;">Ajouter un utilisateur</b-button></router-link>
+        <router-link to="/users/create"><b-button variant="success" style="margin-top: 25px;">Ajouter un utilisateur</b-button></router-link>
 
 
-        <regenerate-token-modal ref="rtm"/>
         <delete-modal ref="dm" v-on:deleted="getUsers"/>
+        <update-wallet ref="uw"/>
     </div>
 </template>

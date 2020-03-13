@@ -40,7 +40,7 @@
             })
             .catch(() => {
                 this.$awn.alert("Impossible de récupérer les données de l'utilisateur !");
-                this.$router.push("/auth/users");
+                this.$router.push("/users");
             })
         },
 
@@ -61,7 +61,7 @@
                 this.axios.put(localStorage.authUrl+"users/"+this.$route.params.id, this.form, {headers: {"Authorization": localStorage.token}})
                 .then(() => {
                     this.$awn.success("L'utilisateur a bien été mis à jour !");
-                    this.$router.push("/auth/users")
+                    this.$router.push("/users")
                     })
                 .catch(() => {
                     this.$awn.alert("Erreur lors de la mise à jour ! Veuillez réessayer.");
@@ -79,7 +79,7 @@
     <div style="margin-top: 15px">
 
         <h2>
-            <router-link to="/auth/users"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
+            <router-link to="/users"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
                                                   title="Annuler et retourner à l'écran des utilisateurs"/></router-link>
             Editer l'utilisateur {{form.firstName}} {{form.lastName}}
         </h2>

@@ -51,7 +51,7 @@
                 this.axios.post(localStorage.authUrl+"users", this.form, {headers: {"Authorization": localStorage.token}})
                 .then(() => {
                     this.$awn.success("L'utilisateur a bien été créé !");
-                    this.$router.push("/auth/users")
+                    this.$router.push("/users")
                     })
                 .catch(() => {
                     this.$awn.alert("Erreur lors de la création ! Veuillez réessayer.");
@@ -80,7 +80,7 @@
     <div style="margin-top: 15px">
 
         <h2>
-            <router-link to="/auth/users"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
+            <router-link to="/users"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
                                                   title="Annuler et retourner à l'écran des utilisateurs"/></router-link>
             Ajouter un utilisateur
         </h2>

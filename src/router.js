@@ -4,13 +4,18 @@ import login from './components/login/login'
 import loginLayout from './components/loginLayout'
 import fullLayout from "./components/fullLayout";
 import dashboard from './components/dashboard/dashboard'
-import clientList from "./components/auth/clients/clientList";
-import emptyLayout from "./components/emptyLayout"
-import createClient from "./components/auth/clients/createClient";
-import userList from "./components/auth/users/userList";
-import createUser from "./components/auth/users/createUser";
-import editUser from "./components/auth/users/editUser";
-import newsletter from "./components/auth/newsletter/newsletter";
+import newsletter from "./components/newsletter/newsletter";
+
+import authClientList from "./components/clients/clientList";
+import authCreateClient from "./components/clients/createClient";
+import authUserList from "./components/users/userList";
+import authCreateUser from "./components/users/createUser";
+import authEditUser from "./components/users/editUser";
+import userComments from "./components/users/userComments";
+import userContracts from "./components/users/userContracts";
+import userPayments from "./components/users/userPayments";
+import gardenList from "./components/gardens/gardenList";
+import gardenComments from "./components/gardens/gardenComments";
 
 const router = new Router({
     mode: 'history',
@@ -35,44 +40,67 @@ const router = new Router({
                 }
             ]
         },
+
         {
-            path: '/auth',
+            path: '/gardens',
             component: fullLayout,
             children: [
                 {
-                    path: 'clients',
-                    component: emptyLayout,
-                    children: [
-                        {
-                            path: '',
-                            component: clientList
-                        },
-                        {
-                            path: 'create',
-                            component: createClient
-                        }
-                    ]
+                    path: '',
+                    component: gardenList
                 },
                 {
-                    path: 'users',
-                    component: emptyLayout,
+                    path: "comments/:id",
+                    component: gardenComments
+                }
+            ]
+        },
+
+        {
+            path: '/clients',
+            component: fullLayout,
+            children: [
+                {
+                    path: '',
+                    component: authClientList
+                },
+                {
+                    path: 'create',
+                    component: authCreateClient
+                }
+            ]
+        },
+                {
+                    path: '/users',
+                    component: fullLayout,
                     children: [
                         {
                             path: '',
-                            component: userList
+                            component: authUserList
                         },
                         {
                             path: 'create',
-                            component: createUser
+                            component: authCreateUser
                         },
                         {
                             path: 'edit/:id',
-                            component: editUser
+                            component: authEditUser
+                        },
+                        {
+                            path: "comments/:id",
+                            component: userComments
+                        },
+                        {
+                            path: "contracts/:id",
+                            component: userContracts
+                        },
+                        {
+                            path: "payments/:id",
+                            component: userPayments
                         }
                     ]
                 },
-            ]
-        },
+
         {
             path: '/newsletter',
             component: fullLayout,
@@ -83,9 +111,7 @@ const router = new Router({
                 }
             ]
         }
-
-
-    ]
+]
 });
 
 Vue.use(Router);

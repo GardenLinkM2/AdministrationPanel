@@ -63,7 +63,7 @@
             <br/>
             Chargement en cours...
         </div>
-        <router-link to="/auth/clients/create"><b-button variant="success" style="margin-top: 25px;">Ajouter un client</b-button></router-link>
+        <router-link to="/clients/create"><b-button variant="success" style="margin-top: 25px;">Ajouter un client</b-button></router-link>
 
 
 

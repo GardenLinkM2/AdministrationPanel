@@ -24,20 +24,9 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item><router-link to="/" >Accueil</router-link></b-nav-item>
-                    <b-nav-item-dropdown left>
-                        <template v-slot:button-content>
-                            <em>Gestion de l'authentification</em>
-                        </template>
-                        <b-dropdown-item><router-link to="/auth/clients">Clients</router-link></b-dropdown-item>
-                        <b-dropdown-item><router-link to="/auth/users">Utilisateurs</router-link></b-dropdown-item>
-                    </b-nav-item-dropdown>
-                    <b-nav-item-dropdown left>
-                        <template v-slot:button-content>
-                            <em>Gestion de l'API</em>
-                        </template>
-                        <b-dropdown-item><router-link to="/api/users">Utilisateurs (TODO)</router-link></b-dropdown-item>
-                        <b-dropdown-item><router-link to="/api/gardens">Jardins (TODO)</router-link></b-dropdown-item>
-                    </b-nav-item-dropdown>
+                    <b-nav-item><router-link to="/clients">Clients</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/users">Utilisateurs</router-link></b-nav-item>
+                    <b-nav-item><router-link to="/gardens">Jardins</router-link></b-nav-item>
                     <b-nav-item><router-link to="/newsletter" >Envoyer une newsletter</router-link></b-nav-item>
                 </b-navbar-nav>
 

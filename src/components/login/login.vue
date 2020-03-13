@@ -54,7 +54,7 @@
                         this.axios.get(localStorage.authUrl + "users/me", {headers: {"Authorization": response.data.user_token}})
                             .then(res => {
 
-                                this.axios.post(localStorage.backUrl+"syn", {token: response.data.access_token})
+                                this.axios.post(localStorage.backUrl+"api/syn", {token: response.data.access_token})
                                 .then(res2 => {
                                     let obj = res.data;
                                     obj.token = response.data.user_token;

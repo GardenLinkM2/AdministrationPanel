@@ -56,7 +56,7 @@
                         centered: true
                     })
                         .then(() => {
-                            this.$router.push("/auth/clients")
+                            this.$router.push("/clients")
                         })
                     })
                 .catch(() => {
@@ -85,7 +85,7 @@
     <div style="margin-top: 15px">
 
         <h2>
-            <router-link to="/auth/clients"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
+            <router-link to="/clients"><span class="fas fa-long-arrow-alt-left" v-b-tooltip.hover
                                                   title="Annuler et retourner à l'écran des clients"/></router-link>
             Ajouter un client
         </h2>
