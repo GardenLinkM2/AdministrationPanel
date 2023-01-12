@@ -21,7 +21,7 @@
     "vue-notification": "^1.3.20",
     "vue-axios": "^2.1.5",
     "portal-vue": "latest",
-    "vue-papa-parse": "^1.3.0",
+    "vue-papa-parse": "^3.1.0",
     "vue-matomo": "^3.13.0-4",
     "@johmun/vue-tags-input": "^2.1.0",
     "vue-awesome-notifications": "^3.1.0",
